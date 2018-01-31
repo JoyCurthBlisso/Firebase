@@ -19,23 +19,23 @@
 
       <div class="jumbotron" style="background-color: black; color: white">
         <h1 class="text-center">My Yoga Classes!</h1>
-        <h3 class="text-center">Upcoming yoga classes and workshops</h3>
+        <h3 class="text-center">Upcoming Yoga Classes</h3>
       </div>
       <div class="row">
         <div class="col-lg-12">
     
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title"><strong>Upcoming classess or workshops</strong></h3>
+              <h3 class="panel-title"><strong>Upcoming Classes</strong></h3>
             </div>
             <div class="panel-body">
-              <table class="table table-hover" id='yoga-table'>
+              <table class="table table-hover" id='yogaClass-table'>
                 <thead>
                   <tr>
-                    <th>Yoga class</th>
+                    <th>Yoga Class</th>
                     <th>Description</th>
-                    <th>Location/th>
-                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Date</th>
                     <th>Duration</th>
                     <th>Cost</th>
                   </tr>
@@ -48,28 +48,40 @@
     
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title"><strong>Add Yoga Class/strong></h3>
+              <h3 class="panel-title"><strong>Add Yoga Class</strong></h3>
             </div>
             <div class="panel-body">
             
               <form>
                 <div class="form-group">
-                  <label for="yogaclass-input">Yoga Class or Workshops/label>
-                  <input class="form-control" id="yogaclass-input" type="text">
+                  <label for="yogaclass-input">Yoga Class or Workshop</label>
+                  <input class="form-control" id="yogaClass-input" type="text">
                 </div>
                 <div class="form-group">
-                  <label for="description-input">Description</label>
-                  <input class="form-control" id="location-input" type="text">
+                  <label for="yogaDescription-input">Description</label>
+                  <input class="form-control" id="yogaDescription-input" type="text">
+                </div>
+                 <div class="form-group">
+                  <label for="yogaLocation-input">Location</label>
+                  <input class="form-control" id="yogaLocation-input" type="text">
+                </div>
+                 <div class="form-group">
+                  <label for="yogaDate-input">Date (DD/MM/YY - ex: 01/01/89)</label>
+                  <input class="form-control" id="yogaDate-input" type="text">
+                </div>
+               <!--  <div class="form-group">
+                  <label for="yogaTime-input">Date (DD/MM/YY - ex: 01/01/89)</label>
+                  <input class="form-control" id="yogaTime-input" type="text">
+                </div> -->
+                 <div class="form-group">
+                  <label for="yogaDuration-input"<label>Duration</label>
+                  <input class="form-control" id="yogaDuration-input" type="text">
                 </div>
                 <div class="form-group">
-                  <label for="time-input">Start Date (DD/MM/YY - ex: 01/01/89)</label>
-                  <input class="form-control" id="time-input" type="text">
+                  <label for="yogaCost-input">Cost</label>
+                  <input class="form-control" id="yogaCost-input" type="text">
                 </div>
-                <div class="form-group">
-                  <label for="rate-input">ost</label>
-                  <input class="form-control" id="cost-input" type="text">
-                </div>
-                <button class="btn btn-primary" id="add-yogaclass-btn" type="submit">Submit</button>
+                <button class="btn btn-primary" id="add-yogaClass-btn" type="submit">Submit</button>
               </form>
             </div>
           </div>
@@ -77,7 +89,7 @@
       </div>
     </div>
     <!-- JavaScript -->
-    <script src="yogaclass.js"></script>
+    <script src="yoga.js"></script>
   </body>
 </html>
 

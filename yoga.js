@@ -17,8 +17,9 @@ $("#add-yogaClass-btn").on("click", function(event) {
  
   var yogaClassName = $("#yogaClass-input").val().trim();
   var yogaDescription = $("#yogaDescription-input").val().trim();
-  var yogaLocation = $(#yogaLocation-input").val().trim();
-  var yogaTime = moment($("#yogaTime-input").val().trim(), "HH:MM").format("X");
+  var yogaLocation = $("#yogaLocation-input").val().trim();
+  // var yogaDate = moment($("#yogaDate-input").val().trim(), "DD/MM/YY").format("X");
+  // var yogaTime = moment($("#yogaTime-input").val().trim(), "HH:MM").format("X");
   var yogaDuration = $("#yogaDuration-input").val().trim(); 
   var yogaCost = $("#yogaCost-input").val().trim();
 
@@ -26,18 +27,20 @@ $("#add-yogaClass-btn").on("click", function(event) {
     ClassName: yogaClassName,
     Description: yogaDescription,
     Location: yogaLocation,
-    Time: yogaTime,
+    // Date: yogaDate,
+    // Time: yogaTime,
     Duration: yogaDuration,
     Cost: yogaCost,
     
   };
 
-  database.ref().push(newyogaClass);
+  database.ref().push(newYogaClass);
 
   console.log(newYogaClass.yogaClassName);
   console.log(newYogaClass.yogaDescription);
   console.log(newYogaClass.yogaLocation);
-  console.log(newYogaClass.yogaTime);
+  // console.log(newYogaClass.yogaDate);
+  // console.log(newYogaClass.yogaTime);
   console.log(newYogaClass.yogaDuration);
   console.log(newYogaClass.yogaCost);
 
@@ -45,9 +48,19 @@ $("#add-yogaClass-btn").on("click", function(event) {
 
   $("#yogaClass-input").val("");
   $("#yogaDescription-input").val("");
-  $("#yogaTime-input").val("");
+  // $("#yogaDate-input").val("");
+  // $("#yogaTime-input").val("");
   $("#yogaDuration-input").val("");
   $("#yogaCost-input").val("");
+
+    // var yogaTimePretty = moment.unix(yogaTime).format("HH:SS");
+  // var yogaDatePretty = moment.unix(yogaDate).format("MM/DD/YY");
+  var yogaDatePretty = "07/20/2017"
+  // var yogaNextClass = moment().diff(moment.unix(yogaDate, "X"), "");
+  // console.log(yogaNextClass);
+
+  $("#yogaClass-table > tbody").append("<tr><td>" + yogaClassName + "</td><td>" + yogaDescription + "</td><td>" + yogaLocation + "</td><td>" +
+  yogaDatePretty + "</td><td>" + yogaDuration + "</td><td>" + yogaCost + "</td></tr>");
   
   
 });
@@ -58,23 +71,19 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   var yogaClassName = childSnapshot.val().yogaClassName;
   var yogaDescription = childSnapshot.val().yogaDescription;
   var yogaLocation = childSnapshot.val().yogaLocation;
-  var yogaTime = childSnapshot.val().yogaTime;
+  // var yogaDate = childSnapshot.val().yogaDate;
+  // var yogaTime = childSnapshot.val().yogaTime;
   var yogaDuration = childSnapshot.val().yogaDuration;
   var yogaCost = childSnapshot.val().yogaCost;
   
-  console.log(yogaClassName);
-  console.log(yogaDescription);
-  console.log(yogaLocation);
-  console.log(yogaTime);
-  console.log(yogaDuration);
-  console.log(yogaCost);
+  // console.log(yogaClassName);
+  // console.log(yogaDescription);
+  // console.log(yogaLocation);
+  // console.log(yogaDate);
+  // // console.log(yogaTime);
+  // console.log(yogaDuration);
+  // console.log(yogaCost);
   
 
-  var yogaTimePretty = moment.unix(yogaTime).format("HH:SS");
 
-  var yogaNextClass = moment().diff(moment.unix(yogaTime, "X"), "");
-  console.log(yogaNextClass);
-
-  $("#yogaClass-table > tbody").append("<tr><td>" + yogaClassName + "</td><td>" + yogaDescription + "</td><td>" +
-  yogaTimePretty + "</td><td>" + yogaLocation + "</td><td>" + yogaDuration + "</td><td>" + yogaCost + "</td></tr>");
 });
