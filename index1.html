@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>My Yoga Classes</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+    <!-- <script src="http://momentjs.com/downloads/moment.js"></script>   -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="jumbotron" style="background-color: black; color: white">
+        <h1 class="text-center">My Yoga Classes!</h1>
+        <h3 class="text-center">Upcoming yoga classes and workshops</h3>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+    
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>Upcoming classess or workshops</strong></h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-hover" id='yoga-table'>
+                <thead>
+                  <tr>
+                    <th>Yoga class</th>
+                    <th>Description</th>
+                    <th>Location/th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+    
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>Add Yoga Class/strong></h3>
+            </div>
+            <div class="panel-body">
+            
+              <form>
+                <div class="form-group">
+                  <label for="yogaclass-input">Yoga Class or Workshops/label>
+                  <input class="form-control" id="yogaclass-input" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="description-input">Description</label>
+                  <input class="form-control" id="location-input" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="time-input">Start Date (DD/MM/YY - ex: 01/01/89)</label>
+                  <input class="form-control" id="time-input" type="text">
+                </div>
+                <div class="form-group">
+                  <label for="rate-input">ost</label>
+                  <input class="form-control" id="cost-input" type="text">
+                </div>
+                <button class="btn btn-primary" id="add-yogaclass-btn" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- JavaScript -->
+    <script src="yogaclass.js"></script>
+  </body>
+</html>
+
