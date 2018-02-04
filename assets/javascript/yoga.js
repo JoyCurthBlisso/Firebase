@@ -13,6 +13,7 @@ $(document).ready(function()
 firebase.initializeApp(config);
 var database = firebase.database();
 
+
 $("#add-yogaClass-btn").on("click", function(event) {
   event.preventDefault();
  
@@ -20,12 +21,10 @@ $("#add-yogaClass-btn").on("click", function(event) {
   var yogaDescription = $("#yogaDescription-input").val().trim();
   var yogaLocation = $("#yogaLocation-input").val().trim();
   var yogaDate = $("#yogaDate-input").val().trim();
-  var yogaTime = moment($("#yogaTime-input").val().trim(), "HH:MM").format("X");
-  // var yogaTime = $("#yogaTime-input");
+  var yogaTime = $("#yogaTime-input").val();
   var yogaFrequency = $("#yogaFrequency-input").val().trim();
   var yogaDuration = $("#yogaDuration-input").val().trim(); 
-  var yogaCost = $("#yogaCost-input").val().trim();
-  
+  var yogaCost = $("#yogaCost-input").data();
 
   var newYogaClass = {
     className: yogaClassName,
@@ -37,7 +36,6 @@ $("#add-yogaClass-btn").on("click", function(event) {
     frequency: yogaFrequency,
     cost: yogaCost,
     timeStamp: firebase.database.ServerValue.TIMESTAMP
-    
   };
   //check to see if any variables are equal to empty quotes
   //or jquery each add class to inputs
@@ -59,17 +57,6 @@ $("#add-yogaClass-btn").on("click", function(event) {
   //   //maybe highlight text or border of which one not filled out
   // }
   // else bootstrap modal 
-
-  // console.log(newYogaClass.yogaClassName);
-  // console.log(newYogaClass.yogaDescription);
-  // console.log(newYogaClass.yogaLocation);
-  // console.log(newYogaClass.yogaDate);
-  // console.log(newYogaClass.yogaTime);
-  // console.log(newYogaClass.yogaCountdown);
-  // console.log(newYogaClass.yogaFrequency);
-  // console.log(newYogaClass.yogaDuration);
-  // console.log(newYogaClass.yogaCost);
-
 
   $("#yogaClass-input").val("");
   $("#yogaDescription-input").val("");
@@ -94,53 +81,28 @@ database.ref().on("child_added", function(childSnapshot) {
   var yogaCountdown = childSnapshot.val().countdown;
   var yogaFrequency = childSnapshot.val().frequency;
   var yogaCost = childSnapshot.val().cost;
-  
-  // console.log(yogaClassName);
-  // console.log(yogaDescription);
-  // console.log(yogaLocation);
-  // console.log(yogaDate);
-  // console.log(yogaTime);
-  // console.log(yogaDuration);
-  // console.log(yogaCountdown);
-  // console.log(yogaFrequency);
-  // console.log(yogaCost);
-
-  moment(yogaDate);
-  console.log(yogaTime + "YogaTime");
-  // console.log(yogaDate);
-
-  // function yogaCountdown(){
+ 
   var now = moment();
   var yogaDatePretty = moment(yogaDate).format("MM/DD/YY");
   var nowPretty = moment(now).format("MM/DD/YY");
+ 
+  var compareDateTime = yogaDatePretty + " " + yogaTime;
+  var compareDateTimeMoment = moment(compareDateTime, 'MM/DD/YY hh:mm');
 
-  // console.log(nowPretty + "now format");
 
-  // var yogaDiffDays = (moment(yogaDatePretty).diff(nowPretty, "days"));
-  // console.log(yogaDiffDays + " diff date");
-
-  // if (yogaDate === yogaDatePretty){
-  console.log(yogaDate + "yogaDate");
-  console.log(yogaDatePretty + "yogaDatePretty");
-
-  yogaCountdown = (moment(yogaDatePretty).fromNow());
-  // console.log(moment(yogaDatePretty).fromNow() + " from now date");
-  // }
-  // else
-  // {
-  //   yogaCountdown = (moment(yogaTime).fromNow());
-  //     console.log(moment(yogaTime).fromNow() + " from now time");
-  // }
-
-  // return yogaCountdown;
-  // }
+  if (nowPretty == yogaDatePretty){
+    yogaCountdown = (moment(compareDateTimeMoment).fromNow());
+  }
+  else
+  {
+    yogaCountdown = (moment(yogaDatePretty).fromNow());
+  }
+  
   $("#yogaClass-table > tbody").append("<tr><td>" + yogaClassName + "</td><td>" + yogaDescription + "</td><td>" + yogaLocation + "</td><td>" + yogaDatePretty + "</td><td>" +
   yogaTime + "</td><td>" +  yogaDuration + "</td><td>" + yogaCost + "</td><td>" + yogaFrequency + "</td><td>" + yogaCountdown + "</td><td>");
-
 
   }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
   });
-
 
 });
