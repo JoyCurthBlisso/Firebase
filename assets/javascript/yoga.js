@@ -1,13 +1,12 @@
 $(document).ready(function()
   {
-
- var config = {
-    apiKey: "AIzaSyBH5aSzh1BaieT92jcfY22p1sjlBeAMJ3o",
-    authDomain: "yoga-a50df.firebaseapp.com",
-    databaseURL: "https://yoga-a50df.firebaseio.com",
-    projectId: "yoga-a50df",
-    storageBucket: "",
-    messagingSenderId: "380429573745"
+    var config = {
+      apiKey: "AIzaSyBH5aSzh1BaieT92jcfY22p1sjlBeAMJ3o",
+      authDomain: "yoga-a50df.firebaseapp.com",
+      databaseURL: "https://yoga-a50df.firebaseio.com",
+      projectId: "yoga-a50df",
+      storageBucket: "",
+      messagingSenderId: "380429573745"
   };
   
 firebase.initializeApp(config);
@@ -24,7 +23,7 @@ $("#add-yogaClass-btn").on("click", function(event) {
   var yogaTime = $("#yogaTime-input").val();
   var yogaFrequency = $("#yogaFrequency-input").val().trim();
   var yogaDuration = $("#yogaDuration-input").val().trim(); 
-  var yogaCost = $("#yogaCost-input").data();
+  var yogaCost = $("#yogaCost-input").val().trim();
 
   var newYogaClass = {
     className: yogaClassName,
@@ -54,7 +53,7 @@ $("#add-yogaClass-btn").on("click", function(event) {
   // }
   // else{
   //   alert("please fill out all fields");
-  //   //maybe highlight text or border of which one not filled out
+  // 
   // }
   // else bootstrap modal 
 
@@ -89,15 +88,10 @@ database.ref().on("child_added", function(childSnapshot) {
   var compareDateTime = yogaDatePretty + " " + yogaTime;
   var compareDateTimeMoment = moment(compareDateTime, 'MM/DD/YY hh:mm');
 
-
-  if (nowPretty == yogaDatePretty){
-    yogaCountdown = (moment(compareDateTimeMoment).fromNow());
-  }
-  else
-  {
-    yogaCountdown = (moment(yogaDatePretty).fromNow());
-  }
+  yogaCountdown = (moment(compareDateTimeMoment).fromNow());
+ 
   
+  console.log(yogaCost + " Yoga Cost")
   $("#yogaClass-table > tbody").append("<tr><td>" + yogaClassName + "</td><td>" + yogaDescription + "</td><td>" + yogaLocation + "</td><td>" + yogaDatePretty + "</td><td>" +
   yogaTime + "</td><td>" +  yogaDuration + "</td><td>" + yogaCost + "</td><td>" + yogaFrequency + "</td><td>" + yogaCountdown + "</td><td>");
 
