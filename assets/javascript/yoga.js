@@ -36,26 +36,9 @@ $("#add-yogaClass-btn").on("click", function(event) {
     cost: yogaCost,
     timeStamp: firebase.database.ServerValue.TIMESTAMP
   };
-  //check to see if any variables are equal to empty quotes
-  //or jquery each add class to inputs
-  // if (yogaLocation !== "" && yogaClassName !== "" && yogaDescription !== "" && yogaDate !== "" && yogaTime !== "" && yogaFrequency !== "" && yogaDuration !== "" && yogaCost !== "")
 
-   // && yogaClassName !== "" && yogaDescription !== "" && yogaFrequency !== "" && yogaDuration !== "" && yogaCost !== ""
-  
-  // if (yogaClassName === "")
-  // {
-  //   $('.Modal').modal();
-  // }
-
-  // alert("please fill out all fields");
-  // {
   database.ref().push(newYogaClass);
-  // }
-  // else{
-  //   alert("please fill out all fields");
-  // 
-  // }
-  // else bootstrap modal 
+ 
 
   $("#yogaClass-input").val("");
   $("#yogaDescription-input").val("");
@@ -90,10 +73,10 @@ database.ref().on("child_added", function(childSnapshot) {
 
   yogaCountdown = (moment(compareDateTimeMoment).fromNow());
  
-  
-  console.log(yogaCost + " Yoga Cost")
+  var yogaTimeHours = (moment(compareDateTime).format("hh:mm a"));
+
   $("#yogaClass-table > tbody").append("<tr><td>" + yogaClassName + "</td><td>" + yogaDescription + "</td><td>" + yogaLocation + "</td><td>" + yogaDatePretty + "</td><td>" +
-  yogaTime + "</td><td>" +  yogaDuration + "</td><td>" + yogaCost + "</td><td>" + yogaFrequency + "</td><td>" + yogaCountdown + "</td><td>");
+   yogaTimeHours + "</td><td>" +  yogaDuration + "</td><td>" + yogaCost + "</td><td>" + yogaFrequency + "</td><td>" + yogaCountdown + "</td><td>");
 
   }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
